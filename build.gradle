@@ -103,7 +103,7 @@ jar {
             "ForceLoadAsMod": "true",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
             "MixinConfigs": "mixins.oldanimations.json",
-            "FMLCorePlugin": "net.asbyth.oldanimations.loader.AnimationsTweaker"
+            "FMLCorePlugin": "net.asbyth.oldanimations.tweaker.AnimationTweaker"
     )
 }
 

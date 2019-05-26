@@ -1,23 +1,20 @@
 package net.asbyth.oldanimations;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import net.asbyth.oldanimations.command.OldAnimationsCommand;
 import net.asbyth.oldanimations.gui.AnimationsGui;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.IOException;
 
 import static net.asbyth.oldanimations.config.Settings.*;
 
@@ -30,81 +27,90 @@ public class OldAnimations {
 
     public static Logger LOGGER = LogManager.getLogger(MODID);
     private boolean gui = false;
-    private File configFile;
+    private final File configFile = new File(Minecraft.getMinecraft().mcDataDir, "config/" + MODID + ".cfg");
 
     @Mod.Instance(MODID)
     public static OldAnimations instance;
 
     @Mod.EventHandler
-    public void preinit(FMLPreInitializationEvent event) {
-        configFile = event.getSuggestedConfigurationFile();
-        loadConfig();
-    }
-
-    @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         LOGGER.info("Initialized Old Animations");
 
+        loadConfig();
         ClientCommandHandler.instance.registerCommand(new OldAnimationsCommand());
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     public void saveConfig() {
-        try {
-            JsonObject object = new JsonObject();
-
-            object.addProperty("OLD_SNEAKING_ANIMATION", OLD_SNEAKING_ANIMATION);
-            object.addProperty("OLD_HEALTH_FLASHING", OLD_HEALTH_FLASHING);
-            object.addProperty("OLD_PLAYER_DAMAGE_FLASH", OLD_PLAYER_DAMAGE_FLASH);
-            object.addProperty("OLD_BLOCKHITTING_ANIMATION", OLD_BLOCKHITTING_ANIMATION);
-            object.addProperty("OLD_ENCHANTMENT_GLINT", OLD_ENCHANTMENT_GLINT);
-
-            object.addProperty("OLD_BLOCKING_POSITION", OLD_BLOCKING_POSITION);
-            object.addProperty("OLD_ROD_POSITION", OLD_ROD_POSITION);
-            object.addProperty("OLD_BOW_POSITION", OLD_BOW_POSITION);
-
-            object.addProperty("OLD_BOW_SCALE", OLD_BOW_SCALE);
-            object.addProperty("OLD_ROD_SCALE", OLD_ROD_SCALE);
-
-            object.addProperty("HIT_GROUND_WHILE_EATING", HIT_GROUND_WHILE_EATING);
-            object.addProperty("HIT_GROUND_WHILE_AIMING", HIT_GROUND_WHILE_AIMING);
-
-            object.addProperty("OLD_TAB_LIST", OLD_TAB_LIST);
-            object.addProperty("OLD_DEBUG_MENU", OLD_DEBUG_MENU);
-
-            FileUtils.writeStringToFile(configFile, object.toString(), "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Configuration configuration = new Configuration(configFile);
+        configuration.save();
+        updateConfig(configuration, false);
     }
-    private void loadConfig() { // the sk1er route because fuck Property and that extra shit :-)
-        try {
-            if (!configFile.exists()) configFile.createNewFile();
-            JsonObject object = new JsonParser().parse(FileUtils.readFileToString(configFile, "UTF-8")).getAsJsonObject();
 
-            if (object.has("OLD_SNEAKING_ANIMATION")) OLD_SNEAKING_ANIMATION = object.get("OLD_SNEAKING_ANIMATION").getAsBoolean();
-            if (object.has("OLD_HEALTH_FLASHING")) OLD_HEALTH_FLASHING = object.get("OLD_HEALTH_FLASHING").getAsBoolean();
-            if (object.has("OLD_PLAYER_DAMAGE_FLASH")) OLD_PLAYER_DAMAGE_FLASH = object.get("OLD_PLAYER_DAMAGE_FLASH").getAsBoolean();
-            if (object.has("OLD_BLOCKHITTING_ANIMATION")) OLD_BLOCKHITTING_ANIMATION = object.get("OLD_BLOCKHITTING_ANIMATION").getAsBoolean();
-            if (object.has("OLD_ENCHANTMENT_GLINT")) OLD_ENCHANTMENT_GLINT = object.get("OLD_ENCHANTMENT_GLINT").getAsBoolean();
-
-            if (object.has("OLD_BLOCKING_POSITION")) OLD_BLOCKING_POSITION = object.get("OLD_BLOCKING_POSITION").getAsBoolean();
-            if (object.has("OLD_ROD_POSITION")) OLD_ROD_POSITION = object.get("OLD_ROD_POSITION").getAsBoolean();
-            if (object.has("OLD_BOW_POSITION")) OLD_BOW_POSITION = object.get("OLD_BOW_POSITION").getAsBoolean();
-
-            if (object.has("OLD_BOW_SCALE")) OLD_BOW_SCALE = object.get("OLD_BOW_SCALE").getAsBoolean();
-            if (object.has("OLD_ROD_SCALE")) OLD_ROD_SCALE = object.get("OLD_ROD_SCALE").getAsBoolean();
-
-            if (object.has("HIT_GROUND_WHILE_EATING")) HIT_GROUND_WHILE_EATING = object.get("HIT_GROUND_WHILE_EATING").getAsBoolean();
-            if (object.has("HIT_GROUND_WHILE_AIMING")) HIT_GROUND_WHILE_AIMING = object.get("HIT_GROUND_WHILE_AIMING").getAsBoolean();
-
-            if (object.has("OLD_TAB_LIST")) OLD_TAB_LIST = object.get("OLD_TAB_LIST").getAsBoolean();
-            if (object.has("OLD_DEBUG_MENU")) OLD_DEBUG_MENU = object.get("OLD_DEBUG_MENU").getAsBoolean();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void loadConfig() {
+        Configuration configuration = new Configuration(configFile);
+        configuration.load();
+        updateConfig(configuration, true);
     }
+
+    private void updateConfig(Configuration configuration, boolean load) {
+        Property prop = configuration.get("General", "OLD_SNEAKING_ANIMATION", false);
+        if (load) OLD_SNEAKING_ANIMATION = prop.getBoolean();
+        else prop.setValue(OLD_SNEAKING_ANIMATION);
+
+        prop = configuration.get("General", "OLD_HEALTH_FLASHING", false);
+        if (load) OLD_HEALTH_FLASHING = prop.getBoolean();
+        else prop.setValue(OLD_HEALTH_FLASHING);
+
+        prop = configuration.get("General", "OLD_PLAYER_DAMAGE_FLASH", false);
+        if (load) OLD_PLAYER_DAMAGE_FLASH = prop.getBoolean();
+        else prop.setValue(OLD_PLAYER_DAMAGE_FLASH);
+
+        prop = configuration.get("General", "OLD_BLOCKHITTING_ANIMATION", false);
+        if (load) OLD_BLOCKHITTING_ANIMATION = prop.getBoolean();
+        else prop.setValue(OLD_BLOCKHITTING_ANIMATION);
+
+        prop = configuration.get("General", "OLD_ENCHANTMENT_GLINT", false);
+        if (load) OLD_ENCHANTMENT_GLINT = prop.getBoolean();
+        else prop.setValue(OLD_ENCHANTMENT_GLINT);
+
+        prop = configuration.get("General", "OLD_BLOCKING_POSITION", false);
+        if (load) OLD_BLOCKING_POSITION = prop.getBoolean();
+        else prop.setValue(OLD_BLOCKING_POSITION);
+
+        prop = configuration.get("General", "OLD_ROD_POSITION", false);
+        if (load) OLD_ROD_POSITION = prop.getBoolean();
+        else prop.setValue(OLD_ROD_POSITION);
+
+        prop = configuration.get("General", "OLD_BOW_POSITION", false);
+        if (load) OLD_BOW_POSITION = prop.getBoolean();
+        else prop.setValue(OLD_BOW_POSITION);
+
+        prop = configuration.get("General", "OLD_BOW_SCALE", false);
+        if (load) OLD_BOW_SCALE = prop.getBoolean();
+        else prop.setValue(OLD_BOW_SCALE);
+
+        prop = configuration.get("General", "OLD_ROD_SCALE", false);
+        if (load) OLD_ROD_SCALE = prop.getBoolean();
+        else prop.setValue(OLD_ROD_SCALE);
+
+        prop = configuration.get("General", "HIT_GROUND_WHILE_EATING", false);
+        if (load) HIT_GROUND_WHILE_EATING = prop.getBoolean();
+        else prop.setValue(HIT_GROUND_WHILE_EATING);
+
+        prop = configuration.get("General", "HIT_GROUND_WHILE_AIMING", false);
+        if (load) HIT_GROUND_WHILE_AIMING = prop.getBoolean();
+        else prop.setValue(HIT_GROUND_WHILE_AIMING);
+
+        prop = configuration.get("General", "OLD_TAB_LIST", false);
+        if (load) OLD_TAB_LIST = prop.getBoolean();
+        else prop.setValue(OLD_TAB_LIST);
+
+        prop = configuration.get("General", "OLD_DEBUG_MENU", false);
+        if (load) OLD_DEBUG_MENU = prop.getBoolean();
+        else prop.setValue(OLD_DEBUG_MENU);
+    }
+
 
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {

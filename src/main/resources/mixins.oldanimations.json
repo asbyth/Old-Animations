@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.oldanimations.refmap.json",
+  "package": "net.asbyth.oldanimations.mixins",
+  "mixins":
+  [
+    "entity.player.MixinEntityPlayer"
+  ]
+}
