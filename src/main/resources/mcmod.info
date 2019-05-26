@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "asbyth_oldanimations",
+    "name": "Old Animations",
+    "description": ":crab: can never have enough animation mods :crab:",
+    "version": "1.0",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/asbyth",
+    "updateUrl": "",
+    "authorList": [
+      "asbyth"
+    ],
+    "credits": "mojang for the animations haha dab",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
