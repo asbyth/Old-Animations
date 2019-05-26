@@ -20,8 +20,8 @@ public class AnimationsGui extends AbstractGui {
         buttonList.add(new AbstractButton(7, getCenter() + 5, getRowPos(4), 150, 20, getSuffix(OLD_BOW_POSITION, "Bow Position")));
         buttonList.add(new AbstractButton(8, getCenter() - 155, getRowPos(5), 150, 20, getSuffix(OLD_BOW_SCALE, "Bow Scale")));
         buttonList.add(new AbstractButton(9, getCenter() + 5, getRowPos(5), 150, 20, getSuffix(OLD_ROD_SCALE, "Rod Scale")));
-        buttonList.add(new AbstractButton(10, getCenter() - 155, getRowPos(6), 150, 20, getSuffix(HIT_GROUND_WHILE_EATING, "Hit Ground While Eating")));
-        buttonList.add(new AbstractButton(11, getCenter() + 5, getRowPos(6), 150, 20, getSuffix(HIT_GROUND_WHILE_AIMING, "Hit Ground While Aiming")));
+        buttonList.add(new AbstractButton(10, getCenter() - 155, getRowPos(6), 150, 20, getSuffix(HIT_GROUND_WHILE_EATING, "Swing While Eating")));
+        buttonList.add(new AbstractButton(11, getCenter() + 5, getRowPos(6), 150, 20, getSuffix(HIT_GROUND_WHILE_AIMING, "Swing While Aiming")));
         buttonList.add(new AbstractButton(12, getCenter() - 155, getRowPos(7), 150, 20, getSuffix(OLD_TAB_LIST, "Tab List")));
         buttonList.add(new AbstractButton(13, getCenter() + 5, getRowPos(7), 150, 20, getSuffix(OLD_DEBUG_MENU, "Debug Menu")));
     }
@@ -84,11 +84,11 @@ public class AnimationsGui extends AbstractGui {
 
             case 10:
                 HIT_GROUND_WHILE_EATING = !HIT_GROUND_WHILE_EATING;
-                button.displayString = getSuffix(HIT_GROUND_WHILE_EATING, "Hit Ground While Eating");
+                button.displayString = getSuffix(HIT_GROUND_WHILE_EATING, "Swing While Eating");
                 break;
             case 11:
                 HIT_GROUND_WHILE_AIMING= !HIT_GROUND_WHILE_AIMING;
-                button.displayString = getSuffix(HIT_GROUND_WHILE_AIMING, "Hit Ground While Aiming");
+                button.displayString = getSuffix(HIT_GROUND_WHILE_AIMING, "Swing While Aiming");
                 break;
 
             case 12:
