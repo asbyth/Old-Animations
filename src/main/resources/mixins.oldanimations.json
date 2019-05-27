@@ -6,6 +6,8 @@
   "mixins":
   [
     "entity.player.MixinEntityPlayer",
-    "client.gui.MixinGuiIngame"
+    "client.gui.MixinGuiIngame",
+    "client.renderer.entity.IMixinRendererLivingEntity",
+    "client.renderer.entity.MixinRendererLivingEntity"
   ]
 }

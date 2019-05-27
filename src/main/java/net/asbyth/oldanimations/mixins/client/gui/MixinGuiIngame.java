@@ -36,6 +36,8 @@ public abstract class MixinGuiIngame extends Gui {
      * @author asbyth
      * @reason health flashing
      * todo: minimize this, make it so it just injects because this is a lot lol
+     * todo: to minimize it, just use a rendergameoverlayevent.pre and make sure type is health
+     * may be what orange is doing bc this dont work and that seems far easier & more compatible
      */
     @Overwrite
     protected void renderPlayerStats(ScaledResolution resolution) {
