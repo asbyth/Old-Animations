@@ -25,7 +25,7 @@ public class HealthFlashingAnimation extends Gui {
     private int lastPlayerHealth;
     private float lastSystemTime;
 
-    @SubscribeEvent
+    @SubscribeEvent // mixins didnt want to work, so i used an event instead
     public void renderGameOverlay(RenderGameOverlayEvent.Pre event) {
         if (event.type == HEALTH) {
             event.setCanceled(true);

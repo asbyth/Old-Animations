@@ -2,9 +2,9 @@
 - 1.7 Sneaking
 - 1.7 Health Flashing
 - 1.7 Armor Flashing when player takes damage
+- Block Hitting
 
 ### Todo
-- Block Hitting
 - Enchantment Glint (?)
 - Blocking Position
 - Rod Position

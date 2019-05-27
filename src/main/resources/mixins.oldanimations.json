@@ -7,6 +7,8 @@
   [
     "entity.player.MixinEntityPlayer",
     "client.renderer.entity.IMixinRendererLivingEntity",
-    "client.renderer.entity.MixinRendererLivingEntity"
+    "client.renderer.entity.MixinRendererLivingEntity",
+    "client.renderer.IMixinItemRenderer",
+    "client.renderer.MixinItemRenderer"
   ]
 }
