@@ -5,13 +5,13 @@
 - Block Hitting
 - Blocking Position
 - Items Position
-
-### Todo
-- Enchantment Glint (?)
 - Rod Position
 - Bow Position
 - Bow Scale
 - Rod Scale
+
+### Todo
+- Enchantment Glint (?)
 - Swing at ground while eating / aiming
 - 1.7 tab list (no heads)
 - 1.7 debug menu
