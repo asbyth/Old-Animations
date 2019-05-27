@@ -1,5 +1,6 @@
 package net.asbyth.oldanimations;
 
+import net.asbyth.oldanimations.animations.HealthFlashingAnimation;
 import net.asbyth.oldanimations.command.OldAnimationsCommand;
 import net.asbyth.oldanimations.gui.AnimationsGui;
 import net.minecraft.client.Minecraft;
@@ -39,6 +40,7 @@ public class OldAnimations {
         loadConfig();
         ClientCommandHandler.instance.registerCommand(new OldAnimationsCommand());
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new HealthFlashingAnimation());
     }
 
     public void saveConfig() {
