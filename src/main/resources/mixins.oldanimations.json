@@ -5,6 +5,7 @@
   "package": "net.asbyth.oldanimations.mixins",
   "mixins":
   [
-    "entity.player.MixinEntityPlayer"
+    "entity.player.MixinEntityPlayer",
+    "client.gui.MixinGuiIngame"
   ]
 }

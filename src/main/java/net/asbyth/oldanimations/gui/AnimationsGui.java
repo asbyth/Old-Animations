@@ -1,5 +1,6 @@
 package net.asbyth.oldanimations.gui;
 
+import net.asbyth.oldanimations.OldAnimations;
 import net.asbyth.oldanimations.gui.helper.AbstractButton;
 import net.asbyth.oldanimations.gui.helper.AbstractGui;
 import net.minecraft.client.gui.GuiButton;
@@ -143,5 +144,10 @@ public class AnimationsGui extends AbstractGui {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public void onGuiClosed() {
+        OldAnimations.instance.saveConfig();
     }
 }

@@ -23,11 +23,6 @@ public class AbstractGui extends AbstractButtonTooltip {
     }
 
     @Override
-    public void onGuiClosed() {
-        OldAnimations.instance.saveConfig();
-    }
-
-    @Override
     protected String getButtonTooltip(int buttonId) {
         return null;
     }
