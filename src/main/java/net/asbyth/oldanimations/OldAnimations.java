@@ -10,6 +10,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.logging.log4j.LogManager;
@@ -34,10 +35,15 @@ public class OldAnimations {
     public static OldAnimations instance;
 
     @Mod.EventHandler
+    public void preinit(FMLPreInitializationEvent event) {
+        LOGGER.info("Loading Configuration");
+        loadConfig();
+    }
+
+    @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         LOGGER.info("Initialized Old Animations");
 
-        loadConfig();
         ClientCommandHandler.instance.registerCommand(new OldAnimationsCommand());
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new HealthFlashingAnimation());

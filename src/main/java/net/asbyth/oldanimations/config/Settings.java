@@ -10,7 +10,7 @@ public class Settings {
     public static boolean OLD_ENCHANTMENT_GLINT = false; // needed?
 
     // positions
-    public static boolean OLD_BLOCKING_POSITION = false;
+    public static boolean OLD_BLOCKING_POSITION = false; // skip for now
     public static boolean OLD_ROD_POSITION = false;
     public static boolean OLD_BOW_POSITION = false;
 
