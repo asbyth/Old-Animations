@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -32,6 +33,27 @@ public class MixinItemRenderer {
      */
     @Overwrite
     private void transformFirstPersonItem(float equipProgress, float swingProgress) {
+        if (mc != null && mc.thePlayer != null && mc.thePlayer.getItemInUse() != null && mc.thePlayer.getItemInUse().getItem() != null
+                && Item.getIdFromItem(mc.thePlayer.getItemInUse().getItem()) == 261) { // bow id
+            if (Settings.OLD_BOW_POSITION) {
+                GlStateManager.translate(0.0f, 0.05f, 0.04f);
+            }
+
+            if (Settings.OLD_BOW_SCALE) {
+                GlStateManager.scale(0.93f, 1.0f, 1.0f);
+            }
+        }
+
+        if (mc != null && mc.thePlayer != null && mc.thePlayer.getCurrentEquippedItem() != null && mc.thePlayer.getCurrentEquippedItem().getItem() != null
+                && Item.getIdFromItem(mc.thePlayer.getCurrentEquippedItem().getItem()) == 346) { // rod id
+            if (Settings.OLD_ROD_POSITION) {
+                GlStateManager.translate(0.08f, -0.027f, -0.33f);
+            }
+
+            if (Settings.OLD_ROD_SCALE) {
+                GlStateManager.scale(0.93f, 1.0f, 1.0f);
+            }
+        }
         GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
         GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
         GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
