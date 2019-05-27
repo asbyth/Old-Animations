@@ -3,10 +3,11 @@
 - 1.7 Health Flashing
 - 1.7 Armor Flashing when player takes damage
 - Block Hitting
+- Blocking Position
+- Items Position
 
 ### Todo
 - Enchantment Glint (?)
-- Blocking Position
 - Rod Position
 - Bow Position
 - Bow Scale

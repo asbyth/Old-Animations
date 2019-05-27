@@ -117,6 +117,10 @@ public class OldAnimations {
         prop = configuration.get("General", "OLD_DEBUG_MENU", false);
         if (load) OLD_DEBUG_MENU = prop.getBoolean();
         else prop.setValue(OLD_DEBUG_MENU);
+
+        prop = configuration.get("General", "OLD_ITEMS_POSITION", false);
+        if (load) OLD_ITEMS_POSITION = prop.getBoolean();
+        else prop.setValue(OLD_ITEMS_POSITION);
     }
 
 
