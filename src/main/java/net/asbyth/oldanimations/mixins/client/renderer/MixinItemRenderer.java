@@ -52,14 +52,14 @@ public class MixinItemRenderer {
     @Overwrite
     public void renderItemInFirstPerson(float partialTicks) {
         float equipProgress = 1.0F - (prevEquippedProgress + (equippedProgress - prevEquippedProgress) * partialTicks);
-        AbstractClientPlayer player = mc.thePlayer;
+        EntityPlayerSP player = mc.thePlayer;
         float swingProgress = player.getSwingProgress(partialTicks);
         float rotationPitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks;
         float rotationYaw = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks;
 
         ((IMixinItemRenderer) this).callRotateArroundXAndY(rotationPitch, rotationYaw); // spelling :(
         ((IMixinItemRenderer) this).callSetLightMapFromPlayer(player);
-        ((IMixinItemRenderer) this).callRotateWithPlayerRotations((EntityPlayerSP) player, partialTicks);
+        ((IMixinItemRenderer) this).callRotateWithPlayerRotations(player, partialTicks);
 
         GlStateManager.enableRescaleNormal();
         GlStateManager.pushMatrix();
@@ -93,6 +93,7 @@ public class MixinItemRenderer {
                     case BOW:
                         transformFirstPersonItem(equipProgress, 0.0F);
                         ((IMixinItemRenderer) this).callDoBowTransformations(partialTicks, player);
+                        break;
                 }
             } else {
                 ((IMixinItemRenderer) this).callDoItemUsedTransformations(swingProgress);
