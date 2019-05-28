@@ -29,7 +29,7 @@ public class OldAnimations {
 
     public static Logger LOGGER = LogManager.getLogger(MODID);
     private boolean gui = false;
-    private final File configFile = new File(Minecraft.getMinecraft().mcDataDir, "config/" + MODID + ".cfg");
+    private final File configFile = new File(Minecraft.getMinecraft().mcDataDir, "config/asbyth_oldanimations.cfg");
 
     @Mod.Instance(MODID)
     public static OldAnimations instance;
@@ -78,9 +78,9 @@ public class OldAnimations {
         if (load) OLD_BLOCKHITTING_ANIMATION = prop.getBoolean();
         else prop.setValue(OLD_BLOCKHITTING_ANIMATION);
 
-        prop = configuration.get("General", "OLD_ENCHANTMENT_GLINT", false);
-        if (load) OLD_ENCHANTMENT_GLINT = prop.getBoolean();
-        else prop.setValue(OLD_ENCHANTMENT_GLINT);
+        prop = configuration.get("General", "OLD_ITEMS_POSITION", false);
+        if (load) OLD_ITEMS_POSITION = prop.getBoolean();
+        else prop.setValue(OLD_ITEMS_POSITION);
 
         prop = configuration.get("General", "OLD_BLOCKING_POSITION", false);
         if (load) OLD_BLOCKING_POSITION = prop.getBoolean();
@@ -117,10 +117,6 @@ public class OldAnimations {
         prop = configuration.get("General", "OLD_DEBUG_MENU", false);
         if (load) OLD_DEBUG_MENU = prop.getBoolean();
         else prop.setValue(OLD_DEBUG_MENU);
-
-        prop = configuration.get("General", "OLD_ITEMS_POSITION", false);
-        if (load) OLD_ITEMS_POSITION = prop.getBoolean();
-        else prop.setValue(OLD_ITEMS_POSITION);
     }
 
 

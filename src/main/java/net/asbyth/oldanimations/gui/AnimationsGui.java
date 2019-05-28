@@ -17,7 +17,7 @@ public class AnimationsGui extends AbstractGui {
         buttonList.add(new AbstractButton(2, getCenter() - 155, getRowPos(2), 150, 20, getSuffix(OLD_PLAYER_DAMAGE_FLASH, "Player Damage Flash")));
         buttonList.add(new AbstractButton(3, getCenter() + 5, getRowPos(2), 150, 20, getSuffix(OLD_BLOCKHITTING_ANIMATION, "Block Hitting Animation")));
 
-        buttonList.add(new AbstractButton(4, getCenter() - 155, getRowPos(3), 150, 20, getSuffix(OLD_ENCHANTMENT_GLINT, "Enchantment Glint")));
+        buttonList.add(new AbstractButton(4, getCenter() - 155, getRowPos(3), 150, 20, getSuffix(OLD_ITEMS_POSITION, "Item Positions")));
         buttonList.add(new AbstractButton(5, getCenter() + 5, getRowPos(3), 150, 20, getSuffix(OLD_BLOCKING_POSITION, "Blocking Position")));
 
         buttonList.add(new AbstractButton(6, getCenter() - 155, getRowPos(4), 150, 20, getSuffix(OLD_ROD_POSITION, "Rod Position")));
@@ -31,8 +31,6 @@ public class AnimationsGui extends AbstractGui {
 
         buttonList.add(new AbstractButton(12, getCenter() - 155, getRowPos(7), 150, 20, getSuffix(OLD_TAB_LIST, "Tab List")));
         buttonList.add(new AbstractButton(13, getCenter() + 5, getRowPos(7), 150, 20, getSuffix(OLD_DEBUG_MENU, "Debug Menu")));
-
-        buttonList.add(new AbstractButton(14, getCenter() - 155, getRowPos(8), 150, 20, getSuffix(OLD_ITEMS_POSITION, "Item Positions")));
     }
 
     @Override
@@ -65,8 +63,8 @@ public class AnimationsGui extends AbstractGui {
                 break;
 
             case 4:
-                OLD_ENCHANTMENT_GLINT = !OLD_ENCHANTMENT_GLINT;
-                button.displayString = getSuffix(OLD_ENCHANTMENT_GLINT, "Enchantment Glint");
+                OLD_ITEMS_POSITION = !OLD_ITEMS_POSITION;
+                button.displayString = getSuffix(OLD_ITEMS_POSITION, "Item Positions");
                 break;
             case 5:
                 OLD_BLOCKING_POSITION = !OLD_BLOCKING_POSITION;
@@ -108,11 +106,6 @@ public class AnimationsGui extends AbstractGui {
                 OLD_DEBUG_MENU = !OLD_DEBUG_MENU;
                 button.displayString = getSuffix(OLD_DEBUG_MENU, "Debug Menu");
                 break;
-
-            case 14:
-                OLD_ITEMS_POSITION = !OLD_ITEMS_POSITION;
-                button.displayString = getSuffix(OLD_ITEMS_POSITION, "Item Positions");
-                break;
         }
     }
 
@@ -130,7 +123,7 @@ public class AnimationsGui extends AbstractGui {
                 return "Block Hitting's animation was changed in 1.8.x, making people think it wasn't possible anymore.";
 
             case 4:
-                return "honestly who fucking knows what this one is lol";
+                return "In 1.8.x, all items were positioned differently than they are now.";
             case 5:
                 return "Blocking used to be more rotated towards the face and not outwards.";
 
@@ -153,9 +146,6 @@ public class AnimationsGui extends AbstractGui {
                 return "The tab menu previews heads in 1.8.x.";
             case 13:
                 return "The debug menu was updated to give more information for technical users, but displays too much for the average user..";
-
-            case 14:
-                return "In 1.8.x, all items were positioned differently than they are now.";
 
             default:
                 return null;

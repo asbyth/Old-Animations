@@ -7,7 +7,6 @@ public class Settings {
     public static boolean OLD_HEALTH_FLASHING = false;
     public static boolean OLD_PLAYER_DAMAGE_FLASH = false;
     public static boolean OLD_BLOCKHITTING_ANIMATION = false;
-    public static boolean OLD_ENCHANTMENT_GLINT = false; // needed? ~ skip for now
 
     // positions
     public static boolean OLD_BLOCKING_POSITION = false;
