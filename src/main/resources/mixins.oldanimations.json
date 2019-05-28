@@ -8,7 +8,6 @@
     "entity.player.MixinEntityPlayer",
     "client.renderer.entity.IMixinRendererLivingEntity",
     "client.renderer.entity.MixinRendererLivingEntity",
-    "client.renderer.entity.MixinRenderItem",
     "client.renderer.IMixinItemRenderer",
     "client.renderer.MixinItemRenderer",
     "client.renderer.entity.layers.MixinLayerHeldItem"
